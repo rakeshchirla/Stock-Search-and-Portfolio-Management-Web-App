@@ -1,0 +1,47 @@
+<div class="container px-0">
+    <div *ngIf="isMessage" class="alert alert-danger alert-dismissable" role="alert" [ngClass]="{'alert-danger': action === 'Sell', 'alert-success': action === 'Buy'}">
+        <div class="d-flex">
+        <span class="text-center flex-grow-1">{{ message }}</span>
+          <button type="button" class="btn-close" aria-label="Close" (click)="closeAlert()"></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-5 px-0">
+            <div class="stock-details text-center">
+                <div class="details">
+                    <h2>{{ stockDetails.ticker }}
+                        <fa-icon [icon]="currStar" (click)="toggleStar(stockDetails.ticker)" [ngClass]="{'text-warning': currStar==faStar, 'text-dark': currStar===fasStar}"  class="text-warning fs-4"></fa-icon>
+                    </h2>
+                    <h4 class="text-secondary">{{ stockDetails.name }}</h4>
+                    <p class="text-secondary">{{ stockDetails.exchange }}</p>
+                    <button class="btn btn-success" (click)="openModal(stockDetails.ticker, stockDetails.name , wallet.money, stockQuote, true)">Buy</button>
+                    <button class="btn btn-danger ms-3" (click)="openModal(stockDetails.ticker, stockDetails.name , wallet.money, stockQuote, false)" *ngIf="showSellButton">Sell</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-2 px-0">
+            <div class="middle-panel text-center">
+                <div id="company-image">
+                    <img [src]="stockDetails.logo" alt="Company Logo" height="120rem">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-5 px-0">
+            <div class="price text-center">
+                <div [ngClass]="{ 'text-success': stockQuote.d > 0, 'text-danger': stockQuote.d < 0}">
+                    <h2>{{ stockQuote.c | number : '1.2-2'}}</h2>
+                    <h3>
+                    <fa-icon [icon]="faCaretUp" *ngIf="stockQuote.d > 0"></fa-icon>
+                    <fa-icon [icon]="faCaretDown" *ngIf="stockQuote.d < 0"></fa-icon>
+                    {{ stockQuote.d | number : '1.2-2'}} ({{ stockQuote.dp | number : '1.2-2'}}%)
+                    </h3>
+                </div>
+                <p class="text-secondary">{{ currentTime | date: 'yyyy-MM-dd HH:mm:ss' }}</p>
+            </div>
+        </div>
+        <div class="text-center mt-2">
+            <p *ngIf="isMarketOpen(stockQuote)" class="text-success fw-bold">Market is Open</p>
+            <p *ngIf="!isMarketOpen(stockQuote)" class="text-danger fw-bold">Market Closed on {{ stockQuote.t*1000 | date: 'yyyy-MM-dd HH:mm:ss' }}</p>
+        </div>
+    </div>
+</div>

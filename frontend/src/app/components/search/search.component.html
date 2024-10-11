@@ -1,0 +1,50 @@
+<app-search-bar [param]="param"></app-search-bar>
+<div *ngIf="isLoading">
+    <mat-spinner class="mx-auto" [diameter]="50"></mat-spinner>
+</div>
+<div class="container w-md-5 mt-5">
+    <div *ngIf="isError" class="alert alert-danger mt-3 text-center">
+        <p>No data found. Please enter a valid Ticker</p>
+    </div>
+</div>
+<div class="container w-md-75" *ngIf="!isLoading && !isError">
+    <app-stock-details 
+    *ngIf="companyProfile && stockQuote"
+    [stockDetails] = "companyProfile"
+    [stockQuote] = "stockQuote"></app-stock-details>
+    <mat-tab-group>
+      <mat-tab label="Summary">
+        <!-- <div *ngIf="!(companyProfile && stockQuote && companyPeers)">
+            <mat-spinner class="mx-auto" [diameter]="50"></mat-spinner>
+        </div> -->
+        <app-summary-tab
+        *ngIf="companyProfile && stockQuote && companyPeers && dayData"
+        [stockDetails] = "companyProfile"
+        [stockQuote] = "stockQuote"
+        [companyPeers] = "companyPeers"
+        [dayData] = "dayData">
+        </app-summary-tab>
+      </mat-tab>
+      <mat-tab label="Top News">
+        <app-top-news-tab 
+        *ngIf="companyNews"
+        [companyNews] = "companyNews">
+        </app-top-news-tab>
+      </mat-tab>
+      <mat-tab label="Charts">
+        <app-charts-tab 
+        *ngIf="historicalData"
+        [historicalData] = "historicalData">
+        </app-charts-tab>
+      </mat-tab>
+      <mat-tab label="Insights">
+        <app-insights-tab 
+        *ngIf="insiderSentiment && recommendationTrends && companyEarnings" 
+        [insiderSentiment] = "insiderSentiment"
+        [recommendationTrends] = "recommendationTrends"
+        [companyEarnings] = "companyEarnings">
+        </app-insights-tab>
+      </mat-tab>
+    </mat-tab-group>
+</div>
+  

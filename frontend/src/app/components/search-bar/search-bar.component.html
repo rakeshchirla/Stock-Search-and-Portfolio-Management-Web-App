@@ -1,0 +1,46 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="text-center mb-3">
+        <p class="fs-3">STOCK SEARCH</p>
+      </div>
+
+      <div class="input-group mb-3">
+        <input type="text" id="search-bar" 
+        class="form-control border-3 border-end-0 rounded-start-pill"
+        placeholder="Enter stock ticker" aria-label="Enter stock ticker" aria-describedby="searchButton" [formControl]="searchControl" [matAutocomplete]="auto" (keydown.enter)="search()">
+        <div>
+          <button 
+          class="btn blue border-3 border-start-0 border-end-0 rounded-0" 
+          (click)="search()">
+            <fa-icon [icon]="faSearch"></fa-icon>
+          </button>
+          <button 
+          class="btn blue border-3 border-start-0 rounded-end-pill" 
+          (click)="clearSearch()">
+            <fa-icon [icon]="faTimes"></fa-icon>
+          </button>
+        </div>
+      </div>
+      
+      <mat-autocomplete  #auto="matAutocomplete">
+        <mat-option  *ngIf="isLoading">
+          <mat-spinner [diameter]="30"></mat-spinner>
+        </mat-option>
+        <div *ngIf="!isLoading">
+          <mat-option *ngFor="let suggestion of autoSuggestions" [value]="suggestion.symbol" (click)="selectSuggestion(suggestion)">
+            {{ suggestion.symbol }} | {{ suggestion.description }}
+          </mat-option>
+        </div>
+      </mat-autocomplete>
+
+    </div>
+  </div>
+  <div *ngIf="isError" class="alert alert-danger alert-dismissable" role="alert">
+    <div class="d-flex">
+      <span class="text-center flex-grow-1">Please enter a valid ticker</span>
+      <button type="button" class="btn-close" aria-label="Close" (click)="closeAlert()"></button>
+    </div>
+  </div>  
+</div>
+

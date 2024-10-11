@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <h1 class="mb-3">My Watchlist</h1>
+  <div *ngIf="loading">
+      <mat-spinner class="mx-auto" [diameter]="50"></mat-spinner>
+  </div>
+  <div *ngIf="watchlist.length === 0 && !loading" class="alert alert-warning mt-3 text-center">
+    Currently you don't have any stock in your watchlist.
+  </div>
+  <div *ngIf="!loading && watchlist.length > 0 && stockQuote" class="row">
+    <div class="col-12" *ngFor="let symbol of watchlist; let i = index">
+      <div class="card mb-3" (click)="navigateToDetails(symbol.symbol)">
+        <div class="card-body pt-0">
+          <div class="row">
+            <div>
+              <button type="button" class="btn btn-sm ps-0" aria-label="Close" (click)="removeFromWatchlist(symbol.symbol); $event.stopPropagation()">&times;</button>
+            </div>
+            <div class="col-6">
+              <h3 class="card-title">{{ symbol.symbol }}</h3>
+              <p class="card-text fw-bold">{{ symbol.companyName }}</p>
+            </div>
+            <div class="col-6" [ngClass]="{ 'text-success': stockQuote[i].d > 0, 'text-danger': stockQuote[i].d < 0}">
+              <h3 class="card-text">{{ stockQuote[i].c | number : '1.2-2'}}</h3>
+              <p class="card-text fw-bold">
+              <fa-icon [icon]="faCaretUp" *ngIf="stockQuote[i].d > 0"></fa-icon>
+              <fa-icon [icon]="faCaretDown" *ngIf="stockQuote[i].d < 0"></fa-icon>
+              {{ stockQuote[i].d | number : '1.2-2'}} ({{ stockQuote[i].dp | number : '1.2-2'}}%)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

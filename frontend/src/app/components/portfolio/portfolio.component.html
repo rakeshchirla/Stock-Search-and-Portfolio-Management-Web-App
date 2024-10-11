@@ -1,0 +1,59 @@
+<div class="container mt-5">
+    <div *ngIf="isMessage" class="alert alert-danger alert-dismissable" role="alert" [ngClass]="{'alert-danger': action === 'Sell', 'alert-success': action === 'Buy'}">
+        <div class="d-flex justify-content-between align-items-center">
+        <span class="text-center flex-grow-1">{{ message }}</span>
+          <button type="button" class="btn-close" aria-label="Close" (click)="closeAlert()"></button>
+        </div>
+    </div>
+    <h1 class="mb-3">My Portfolio</h1>
+    <div *ngIf="loading">
+        <mat-spinner class="mx-auto" [diameter]="50"></mat-spinner>
+    </div>
+    <h3 *ngIf="!loading && wallet" class="mb-3">Money in Wallet: ${{ wallet.money | number : '1.2-2'}}</h3>
+    <div *ngIf="!loading && portfolio.length === 0" class="alert alert-warning mt-3 text-center">
+        Currently you don't have any stock.
+    </div>
+    <div *ngIf="!loading && portfolio.length > 0 && stockQuote" class="row">
+      <div class="col-12" *ngFor="let symbol of portfolio; let i = index">
+        <div class="card mb-3 fs-5 lh-1 fw-normal" *ngIf="symbol.quantity">
+             <!-- (click)="navigateToDetails(symbol.symbol)"> -->
+            <div class="card-header">
+                <h3 class="card-title fs-2">{{ symbol.symbol }}
+                <span class="card-text text-muted fs-4">{{ symbol.companyName }}</span></h3>
+            </div>
+            <div class="card-body">
+            <div class="row">
+              <div class="col-md-3 col-6 lh-sm fs-5 pe-0">
+                <div>Quantity:</div>
+                <div>Avg. Cost / Share:</div>
+                <div>Total Cost:</div>
+              </div>
+              <div class="col-md-3 col-6 lh-sm fs-5 ps-5 pe-0">
+                <div>{{ symbol.quantity | number : '1.2-2'}}</div>
+                <div>{{ symbol.totalPrice/symbol.quantity | number : '1.2-2'}}</div>
+                <div>{{ symbol.totalPrice | number : '1.2-2'}}</div>
+              </div>
+              <div class="col-md-3 col-6 lh-sm fs-5 pe-0">
+                <div>Change:</div>
+                <div>Current Price:</div>
+                <div>Market Value:</div>
+              </div>
+              <div class="col-md-3 col-6 lh-sm fs-5 d ps-5 pe-0" [ngClass]="{'text-success': symbol.totalPrice/symbol.quantity + 0.01 < stockQuote[i].c, 
+              'text-danger': symbol.totalPrice/symbol.quantity > stockQuote[i].c + 0.01}">
+                <div>{{ ((symbol.totalPrice/symbol.quantity) - stockQuote[i].c) | number : '1.1-2' }}</div>
+                <div>{{ stockQuote[i].c | number : '1.2-2'}}</div>
+                <div>{{ stockQuote[i].c*symbol.quantity | number : '1.2-2'}}</div>
+              </div>
+            </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary" (click)="openModal( symbol.symbol, symbol.companyName ,wallet.money, stockQuote[i], true )">Buy</button>
+                <button class="btn btn-danger ms-2" (click)="openModal( symbol.symbol, symbol.companyName ,wallet.money, stockQuote[i], false )">Sell</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  

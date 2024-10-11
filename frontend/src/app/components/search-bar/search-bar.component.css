@@ -1,0 +1,14 @@
+.blue {
+    color: #19239b;
+    border-color: #19239b;
+}
+
+input{
+    color: black;
+    border-color: #19239b;;
+}
+
+input:focus{
+    box-shadow: none;
+    border-color: #19239b;
+}

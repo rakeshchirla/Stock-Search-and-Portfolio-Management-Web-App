@@ -1,0 +1,22 @@
+<div class="modal-content" *ngIf="!loading">
+  <div class="modal-header justify-content-between">
+    <h5 class="modal-title">{{ symbol }}</h5>
+    <button class="btn btn-sm custom-close text-primary text-decoration-underline" (click)="activeModal.dismiss('Cross click')">&times;</button>
+  </div>
+  <div class="modal-body ps-4">
+    <div>Current Price: {{ currentPrice | number : '1.0-2'}}</div>
+    <div>Money in Wallet: {{ money | number : '1.0-2'}}</div>
+    <label for="quantity">Quantity: </label>
+    <input type="number" id="quantity" class="d-inline form-control w-75 ms-2" [(ngModel)]="quantity" (ngModelChange)="calculateTotal()" required>
+    <div *ngIf="isBuy && quantity * currentPrice > money" class="text-danger mt-2 mb-3">Not enough money in wallet!</div>
+    <div *ngIf="!isBuy && quantity > portfolio.quantity" class="text-danger mt-2 mb-3">You cannot sell the stocks that you don't have!</div>
+  </div>
+  <div class="modal-footer justify-content-between">
+    <div>Total: {{ total | number : '1.0-2'}}</div>
+    <div>
+        <button type="button" *ngIf="isBuy" class="btn btn-success" [disabled]="!isValidTransaction(isBuy)" (click)="buy(quantity, total)">Buy</button>
+        <button type="button" *ngIf="!isBuy" class="btn btn-success" [disabled]="!isValidTransaction(isBuy)" (click)="sell(quantity, total)">Sell</button>
+    </div>
+  </div>
+</div>
+  

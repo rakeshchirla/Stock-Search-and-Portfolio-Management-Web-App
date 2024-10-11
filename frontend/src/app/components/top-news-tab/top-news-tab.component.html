@@ -1,0 +1,24 @@
+<div class="container mt-4 mb-4">
+<div *ngIf="companyNews.length <= 0;" class="text-center">
+    <div class="text-center">
+        <mat-spinner class="mx-auto" [diameter]="50"></mat-spinner>
+    </div>
+</div>
+<div class="row" *ngIf="companyNews.length > 0;">
+    <div class="col-md-6 mb-3" *ngFor="let article of companyNews.slice(0, 20)">
+    <div class="card h-100 bg-light" (click)="openModal(article)">
+        <div class="row g-0">
+        <div class="col-md-4">
+            <img [src]="article.image" class="rounded news-image ms-3 my-3" alt="News Image">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+            <p class="card-title">{{ article.headline }}</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+  

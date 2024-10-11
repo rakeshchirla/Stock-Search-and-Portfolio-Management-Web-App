@@ -57,12 +57,16 @@ npm install
 
 3. **Environment Configuration**
 Create a `.env` file in the root directory:
+
 FINNHUB_API_KEY=your_finnhub_api_key
+
 POLYGON_API_KEY=your_polygon_api_key
+
 MONGODB_URI=your_mongodb_connection_string
+
 PORT=3000
 
-4. **Start the development server**
+5. **Start the development server**
 ng serve
 
 For the backend:

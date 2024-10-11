@@ -50,12 +50,13 @@ This comprehensive stock market web application, built with Angular, provides us
 
 1. **Clone the repository**
 git clone https://github.com/rakeshchirla/Stock-Search-and-Portfolio-Management-Web-App
+
 cd stock-market-app
 
-2. **Install dependencies**
+3. **Install dependencies**
 npm install
 
-3. **Environment Configuration**
+4. **Environment Configuration**
 Create a `.env` file in the root directory:
 
 FINNHUB_API_KEY=your_finnhub_api_key

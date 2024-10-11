@@ -73,30 +73,141 @@ Open your browser and navigate to `http://localhost:4200`
 
 ## Project Structure
 stock-market-app/
+
 │
+
 ├── src/
+
 │   ├── app/
+
 │   │   ├── components/
+
 │   │   │   ├── stock-search/
+
+│   │   │   │   ├── stock-search.component.ts
+
+│   │   │   │   ├── stock-search.component.html
+
+│   │   │   │   └── stock-search.component.css
+
 │   │   │   ├── stock-details/
+
+│   │   │   │   ├── stock-details.component.ts
+
+│   │   │   │   ├── stock-details.component.html
+
+│   │   │   │   └── stock-details.component.css
+
 │   │   │   ├── watchlist/
+
+│   │   │   │   ├── watchlist.component.ts
+
+│   │   │   │   ├── watchlist.component.html
+
+│   │   │   │   └── watchlist.component.css
+
 │   │   │   └── portfolio/
+
+│   │   │       ├── portfolio.component.ts
+
+│   │   │       ├── portfolio.component.html
+
+│   │   │       └── portfolio.component.css
+
 │   │   ├── services/
+
 │   │   │   ├── stock.service.ts
+
 │   │   │   ├── watchlist.service.ts
+
 │   │   │   └── portfolio.service.ts
+
 │   │   ├── models/
+
+│   │   │   ├── stock.model.ts
+
+│   │   │   ├── watchlist-item.model.ts
+
+│   │   │   └── portfolio-item.model.ts
+
+│   │   ├── pipes/
+
+│   │   │   └── stock-change.pipe.ts
+
+│   │   ├── app.component.ts
+
+│   │   ├── app.component.html
+
+│   │   ├── app.component.css
+
 │   │   └── app.module.ts
+
 │   ├── assets/
-│   └── environments/
+
+│   │   ├── images/
+
+│   │   └── icons/
+
+│   ├── environments/
+
+│   │   ├── environment.ts
+
+│   │   └── environment.prod.ts
+
+│   ├── index.html
+
+│   ├── main.ts
+
+│   └── styles.css
+
 ├── server/
+
 │   ├── routes/
+
+│   │   ├── stock.routes.js
+
+│   │   ├── watchlist.routes.js
+
+│   │   └── portfolio.routes.js
+
 │   ├── models/
+
+│   │   ├── user.model.js
+
+│   │   ├── watchlist.model.js
+
+│   │   └── portfolio.model.js
+
 │   ├── controllers/
+
+│   │   ├── stock.controller.js
+
+│   │   ├── watchlist.controller.js
+
+│   │   └── portfolio.controller.js
+
+│   ├── middleware/
+
+│   │   └── auth.middleware.js
+
+│   ├── config/
+
+│   │   └── database.config.js
+
+│   ├── utils/
+
+│   │   └── api.utils.js
+
 │   └── server.js
+
 ├── angular.json
+
+├── tsconfig.json
+
 ├── package.json
-└── README.md
+
+├── README.md
+
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.

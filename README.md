@@ -1,4 +1,4 @@
-# Stock Market Web Application
+# Stock Search and Portfolio Management Web Application
 
 ## Overview
 
@@ -49,7 +49,7 @@ This comprehensive stock market web application, built with Angular, provides us
 ## Setup and Installation
 
 1. **Clone the repository**
-git clone https://github.com/your-username/stock-market-app.git
+git clone https://github.com/rakeshchirla/Stock-Search-and-Portfolio-Management-Web-App
 cd stock-market-app
 
 2. **Install dependencies**

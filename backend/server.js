@@ -16,8 +16,8 @@ app.use(express.static('dist/frontend/browser'));
 
 // Finnhub API base URL
 const finnhubBaseUrl = 'https://finnhub.io/api/v1';
-const apiKey = "cn03appr01qkcvkfm70gcn03appr01qkcvkfm710";
-const polygonApiKey = "cx5TKaypN7eWQpWVnQp61qH4EZK47iym";
+const apiKey = "API_KEY";
+const polygonApiKey = "API_KEY";
 
 // Route for getting autocomplete suggestions
 app.get('/api/autocomplete/:query', async (req, res) => {
